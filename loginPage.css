@@ -1,0 +1,72 @@
+body{
+    padding:0px;
+    margin:0px;
+    background-color:lightskyblue;
+}
+.container{
+    position:relative;
+}
+.imageHolder{
+    height:80vh;
+    background-color:aquamarine;
+    margin-top:10vh;
+    width:60vw;
+    border-top-right-radius:2rem;
+    border-bottom-right-radius:2rem;
+    background-image:url('images/WhatsApp Image 2025-04-22 at 00.33.02.jpeg');
+    background-size:cover;
+    background-position:right;
+}
+.signUpBox{
+    background-color:white;
+    height:60vh;
+    width:350px;
+    padding:2rem 4rem;
+    position:absolute;
+    top:6vh;
+    right:10vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:2rem;
+}
+.signUpBox div{
+    width:100%;
+}
+p{
+    margin:0px;
+    font-family: "Source Code Pro", monospace;
+}
+
+.greet{
+    font-size:3rem;
+    text-align:center;
+    font-family: "Limelight", sans-serif;
+}
+.signUpBox input{
+    width:100%;
+    height:3rem;
+    border-radius:0.5rem;
+    border-style:none;
+    background-color:rgb(194, 220, 243);
+    padding-left:1rem;
+    font-family: "Source Code Pro", monospace;
+    font-size:1rem;
+}
+
+.signUpButton{
+    text-align:center;
+}
+.signUpButton button{
+    height:3rem;
+    width:7rem;
+    font-size:1rem;
+    background-color:lightgreen;
+    border-radius:0.4rem;
+    border-style:none;
+}
+a{
+    text-decoration:none;
+    color:black;
+}
