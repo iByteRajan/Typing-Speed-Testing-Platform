@@ -16,12 +16,12 @@ body{
   flex-direction: row;
   color:antiquewhite;
   font-size: 50px ;
-  margin-left: 60px;
+  margin-left: 3%;
 }
 .header-center{
   font-family: "VT323";
   display: flex;
-  margin-left: 40px;
+  margin-left: 2%;
 }
 .header-center img{
   width: 60px;
@@ -30,15 +30,18 @@ body{
 .header-right{
   width: 71px;
   height: 70px;
-  margin-right: 60px;
+  margin-left: 4%;
+  margin-right: 5%;
+  margin-top: -25px;
 }
 .header-right img{
-  width: 65px;
+  width: 90px;
 }
 .test{
+  background-color: #B8C1EC;
   font-family: "VT323";
   font-weight: 10px;
-  margin-left: 30px;
+  margin-left: 20%;
   width:130px;
   height: 50px;
   font-size:30px ;
@@ -48,12 +51,12 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding:5%;
+  padding:7%;
   margin-top: 30px;
   margin-left: 30%;  
   margin-right: 30%; 
   background-color: rgb(250, 247, 244);
-  border-radius: 50px;
+  border-radius: 40px;
   border: none;
   box-shadow: 0px 15px 2px 0px #B8C1ECC3;
 }
@@ -66,7 +69,7 @@ body{
   position: absolute;
   display: inline;
   bottom: 60%;
-  left: 23%;
+  left: 22.8%;
   font-size: 30px;
   color:#232946;
   background: #EEBBC3;
@@ -82,7 +85,7 @@ body{
   font-family:"JetBrains Mono" ;
   position: absolute;
   bottom:14%;
-  left: 23%;
+  left: 22.8%;
   padding: 7px 20px;
   font-size: 30px;
   color:#232946;
@@ -95,7 +98,7 @@ body{
   display: inline;
   position: absolute;
   bottom: 14%;
-  right: 23%;
+  right: 21.3%;
   font-size: 30px;
   color:#232946;
   background: #EEBBC3;
@@ -104,11 +107,11 @@ body{
 #accuracy{
   margin-top: 5px;
   font-family:"JetBrains Mono" ;
-  padding: 7px 45px;
+  padding: 7px 46px;
   position: absolute;
   display: inline;
   bottom:60%;
-  right: 23%;
+  right: 21.51%;
     font-size: 30px;
   color:#232946;
   background: #EEBBC3;
