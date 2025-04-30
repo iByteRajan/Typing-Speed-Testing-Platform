@@ -3,9 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Typos Speed Test</title>
+  <title>Typos | Profile</title>
   <link rel="stylesheet" href="profile.css">
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase-init.js"></script>
+
+  <script src="js/auth.js" defer></script>
 </head>
 
 <body>
@@ -17,21 +25,22 @@
       <div class="yu">
         <p class="right-title">your stats.</p>
       </div>
-      <button class="round-button">
-        <img src="switch-off-on-power-energy-battery-ecology-svgrepo-com.svg" alt="Arrow Icon">
+      <button id="logoutButton" class="round-button">
+        <img src="./IMAGES/logout.png" alt="Arrow Icon">
       </button>
     </header>
 
     <section class="profile-section">
-       <img src="left-navigation-back-svgrepo-com (1).svg" alt="" class="arrow">
+       <img src="./IMAGES/left-navigation-back-svgrepo-com (1).svg" alt="" class="arrow">
       
+       <div class="bar">
       <div class="left-box">
         <p class="small-label">standing</p>
         <h2 class="big-number">5.</h2>
       </div>
 
       <div class="profile-pic">
-        <img src="https://i.imgur.com/5cLDeJY.png" alt="Profile Picture">
+        <img src="./IMAGES/Woman3.jpg" alt="Profile Picture">
       </div>
 
       <div class="right-box">

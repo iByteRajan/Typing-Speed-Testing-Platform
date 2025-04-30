@@ -1,10 +1,10 @@
 body{
   margin: 0;
-  height: 1000px;
+  padding: 0;
   background-color: #232946;
 }
 .header{
-  margin-top: 40px;
+  margin-top: 55px;
   height: 55px;
   display: flex;
   align-items: center;
@@ -14,28 +14,40 @@ body{
   font-family: "VT323";
   display: flex;
   flex-direction: row;
-  color:antiquewhite;
-  font-size: 50px ;
-  margin-left: 3%;
+  color:white;
+  font-size: 70px ;
+  margin-left: 50px;
+}
+.right{
+  display: flex;
+  margin-right: 4%;
+  align-items: center;
 }
 .header-center{
   font-family: "VT323";
   display: flex;
-  margin-left: 2%;
+  position: relative;
+  right: 10vw;
 }
 .header-center img{
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+}
+.test{
+  font-size: 65px ;
+  margin-left: 35%;
 }
 .header-right{
-  width: 71px;
+  width: 90px;
   height: 70px;
-  margin-left: 4%;
   margin-right: 5%;
-  margin-top: -25px;
 }
 .header-right img{
-  width: 90px;
+  width: 130%;
+  height: 120%;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 3%;
 }
 .test{
   background-color: #B8C1EC;
@@ -53,72 +65,94 @@ body{
   align-items: center;
   padding:7%;
   margin-top: 30px;
-  margin-left: 30%;  
-  margin-right: 30%; 
   background-color: rgb(250, 247, 244);
   border-radius: 40px;
   border: none;
+  width: 55vw;
+  height: 5vh;
   box-shadow: 0px 15px 2px 0px #B8C1ECC3;
 }
 .fn{
   position: relative;
+  display: flex;
+  justify-content: center;
 }
+
 #timer{
   font-family:"JetBrains Mono" ;
+  width: 13vw;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 7px 20px;
   position: absolute;
-  display: inline;
-  bottom: 60%;
-  left: 22.8%;
+  bottom: 55%;
+  left: 2%;
   font-size: 30px;
   color:#232946;
   background: #EEBBC3;
   border-radius: 7px;
+  box-shadow: .32vi .32vi .32vi rgba(0, 0, 0, 0.392);
 }
 
 #WPM{
   margin-top: 5px;
   display: flex;
-  display: inline;
+  width: 13vw;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   justify-content: center;
   align-items: center;
   font-family:"JetBrains Mono" ;
   position: absolute;
-  bottom:14%;
-  left: 22.8%;
+  bottom:18%;
+  left: 2%;
   padding: 7px 20px;
   font-size: 30px;
   color:#232946;
   background: #EEBBC3;
   border-radius: 7px;
+  box-shadow: .32vi .32vi .32vi rgba(0, 0, 0, 0.392);
 }
 #CPM{
   font-family:"JetBrains Mono" ;
   padding: 7px 20px;
-  display: inline;
+  width: 13vw;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  bottom: 14%;
-  right: 21.3%;
+  bottom: 18%;
+  right: 2%;
   font-size: 30px;
   color:#232946;
   background: #EEBBC3;
   border-radius: 7px;
+  box-shadow: -.32vi .32vi .32vi rgba(0, 0, 0, 0.392);
 }
 #accuracy{
-  margin-top: 5px;
+  width: 10vw;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family:"JetBrains Mono" ;
   padding: 7px 46px;
   position: absolute;
-  display: inline;
-  bottom:60%;
-  right: 21.51%;
-    font-size: 30px;
+  bottom:55%;
+  right: 2%;
+  font-size: 30px;
   color:#232946;
   background: #EEBBC3;
   border-radius: 7px;
+  box-shadow: -.32vi .32vi .32vi rgba(0, 0, 0, 0.392);
 }
 .restart-button{
-  margin-top: 70px;
+  margin-top: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -135,23 +169,26 @@ body{
   border: none;
 }
 .middle-part{
-  margin-top: 110px;
+  margin-top: 18vh;
   display:flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
+  gap: 5vw;
 }
-.runner{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.progress-bar{
+  width: 60vw;
+  height: 15px;
+  background: linear-gradient( to right, white, #b8c1ec, #7283d4);
+  border-radius: 10px;
+  position: relative;
 }
-.path{
-  margin-left: 180px;
-}
+
 .man{
   position: relative;
-  right:380px;
-  top:-5px;
+  right:0px;
+  top: -35px;
+  width: 70px;
+  height: 70px;
 }
 .average{
   display: flex;
@@ -162,10 +199,10 @@ body{
 .heading{
   font-family:"JetBrains Mono" ;
   color:#aeb6df;
-  font-size: 30px;
+  font-size: 20px;
 }
 .value{
   font-family:"JetBrains Mono" ;
   color: whitesmoke;
-  font-size: 20px;
+  font-size: 30px;
 }

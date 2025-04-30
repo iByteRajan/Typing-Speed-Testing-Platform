@@ -10,12 +10,12 @@
   <link rel="stylesheet" href="landingPage.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Typos</title>
+  <title>Typos |</title>
 
   <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore-compat.js"></script>
-  
+
   <script src="js/firebase-init.js"></script>
 
   <script src="js/auth.js" defer></script>
@@ -26,46 +26,46 @@
     <header>
       <div class="header">
         <div class="header-left">
-          <div>Typos</div>
-          <div style="margin-left:25px">|</div>
+          <div>Typos |</div>
         </div>
-        <div class="header-center">
-          <img src="./IMAGES/leaderboard.png" alt="">
-          <div style="font-size: 50px; color: rgb(116, 126, 157); ">Leaderboard</div>
-          <div><button class="test">Test Now</div>
-        </div>
-        <div class="header-right">
-          <img src="./IMAGES/profile.png">
+        <div class="right">
+          <div class="header-center">
+            <img src="./IMAGES/leaderboard.png" alt="">
+            <div style="font-size: 50px; color:#b8c1ec; ">Leaderboard</div>
+            <div><button class="test">Test Now</div>
+          </div>
+          <a href="profile.html" class="header-right">
+            <img src="./IMAGES/Woman3.jpg">
+          </a>
         </div>
       </div>
     </header>
     <div class="middle-part">
       <div class="runner">
-        <img src="./IMAGES/rectangle.png" class="path" width="80%" height="21">
-        <img src="./IMAGES/running.png" class="man" width="10%">
+        <div class="progress-bar"></div>
+        <img src="./IMAGES/running.png" class="man">
       </div>
-      <div class="average">
+      <!-- <div class="average">
         <div class="heading">average</div>
         <div class="value">45 WPM</div>
-      </div>
+      </div> -->
     </div>
     <div class="fn">
       <div class="typing-area">
       </div>
-      <div id="timer">00:12</div>
-      <div id="WPM">6 WPM</div>
-      <div id="CPM">26 CPM</div>
-      <div id="accuracy">85%</div>
+      <div id="timer" class="info">00:12</div>
+      <div id="WPM" class="info">6 WPM</div>
+      <div id="CPM" class="info">26 CPM</div>
+      <div id="accuracy" class="info">85%</div>
     </div>
     <div class="restart-button">
       <button class="restart">
         <img src="./IMAGES/restart.png" width="100%" alt="">
       </button>
-      <button id="logoutButton">Logout</button>
     </div>
   </main>
 
-  
+
 </body>
 
 </html>
