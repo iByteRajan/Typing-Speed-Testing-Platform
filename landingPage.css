@@ -214,10 +214,19 @@ body{
   padding:0px;
   margin:0px;
   word-spacing:0.3rem;
+  text-align:center;
 }
 
 .word{
   display:inline-block;
   font-family: "Fira Code", monospace;
-  font-size:25px;
+  font-size:35px;
+  color:rgb(163, 167, 167);
+}
+
+.correct{
+  color:rgb(11, 207, 11);
+}
+.incorrect{
+  color:red;
 }

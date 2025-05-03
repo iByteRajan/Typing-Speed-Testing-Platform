@@ -14,7 +14,6 @@ function formatletter(word){
 
 function randomWord(){
     let word = words[Math.floor(Math.random() * words.length)];
-    console.log(word);
     return `<div class="word">${formatletter(word)}</div>`;
 }
 
@@ -27,3 +26,71 @@ function insertpara(){
 }
 
 insertpara();
+
+function addClass(ele,className){
+    return ele.classList.add(className);
+}
+function removeClass(ele,className){
+    return ele.classList.remove(className);
+}
+
+let firstWord=document.querySelector('.word');
+let firstLetter=document.querySelector('.letter');
+firstLetter.classList.add("current");
+firstWord.classList.add("current");
+
+
+//HANDLING THE KEYPRESS EVENTS
+
+typingArea.addEventListener("keydown",(event)=>{
+    let keyPressed=event.key;
+    let currentLetterEle=document.querySelector('.letter.current');
+    let currentWordEle=document.querySelector('.word.current');
+    let expectedLetter=currentLetterEle.textContent;
+    console.log("expected letter : " + expectedLetter);
+    if (keyPressed === "Backspace") {
+        const prevLetter = currentLetterEle.previousElementSibling;
+        if (prevLetter && prevLetter.classList.contains("letter")) {        //<---------
+            removeClass(currentLetterEle, "current"); 
+            addClass(prevLetter, "current");       
+            removeClass(prevLetter, "correct");    
+            removeClass(prevLetter, "incorrect");
+        }
+        event.preventDefault(); // prevent default backspace behavior
+        return;
+    }
+
+    // HANDLING THE SHIFT AND OTHER KEYS 
+    if(keyPressed.length !==1 && keyPressed !=" ") return ;
+
+    // HANDLING THE SPACEBAR KEY EVENT
+    if(keyPressed===" "){
+        const nextWord=currentWordEle.nextElementSibling;
+        if(nextWord && nextWord.classList.contains("word")){                //<--------
+            removeClass(currentWordEle,"current");
+            addClass(nextWord,"current");
+
+            const firstLetter=nextWord.querySelector('.letter');
+            if(firstLetter){
+                removeClass(currentLetterEle,"current");
+                addClass(firstLetter,"current");
+            }
+        }
+        event.preventDefault();
+    }
+
+    // HANDLING THE letter KEY EVENT 
+    else{
+        if(keyPressed==expectedLetter){
+            addClass(currentLetterEle,"correct");
+        }
+        else{
+            addClass(currentLetterEle,"incorrect");
+        }
+        let nextLetter=currentLetterEle.nextElementSibling;
+        if(nextLetter){
+            addClass(nextLetter,"current");
+            removeClass(currentLetterEle,"current");
+        }
+    }
+})
