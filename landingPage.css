@@ -136,13 +136,13 @@ body{
   box-shadow: -.32vi .32vi .32vi rgba(0, 0, 0, 0.392);
 }
 #accuracy{
-  width: 10vw;
+  width: 13vw;
   height: 7vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family:"JetBrains Mono" ;
-  padding: 7px 46px;
+  padding: 7px 20px;
   position: absolute;
   bottom:55%;
   right: 2%;
