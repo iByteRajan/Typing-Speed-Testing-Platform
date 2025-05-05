@@ -225,10 +225,9 @@ body{
 }
 
 .correct{
-  color:rgb(11, 207, 11);
-  font-style:italic;
+  color:#b8c1ec;
 }
 .incorrect{
-  color:red;
-  font-style:italic;
+  color:rgba(255, 111, 111, 0.774);
+  font-weight: 500;
 }
