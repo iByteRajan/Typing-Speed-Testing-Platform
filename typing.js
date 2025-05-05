@@ -1,4 +1,5 @@
 let timerStarted = false;
+let timerExpired = false;
 let timeLeft = 60; // seconds
 let timerInterval;
 
@@ -18,6 +19,7 @@ function startTimer() {
 
         if (timeLeft === 0) {
             clearInterval(timerInterval);
+            timerExpired = true;
             typingArea.blur(); // stop typing
         }
     }, 1000);
@@ -84,6 +86,11 @@ firstWord.classList.add("current");
 
 typingArea.addEventListener("keydown", (event) => {
 
+    if (timerExpired) {
+        event.preventDefault();
+        return;
+    }
+    
     if (!timerStarted) {
         startTimer();
         timerStarted = true;
