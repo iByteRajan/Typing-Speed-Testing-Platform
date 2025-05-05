@@ -169,6 +169,11 @@ body{
   background: #B8C1EC;
   border: none;
 }
+.restart:hover{
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
+}
+
 .middle-part{
   margin-top: 18vh;
   display:flex;

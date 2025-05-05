@@ -90,7 +90,7 @@ typingArea.addEventListener("keydown", (event) => {
         event.preventDefault();
         return;
     }
-    
+
     if (!timerStarted) {
         startTimer();
         timerStarted = true;
@@ -153,3 +153,40 @@ typingArea.addEventListener("keydown", (event) => {
 
     updateStats();
 })
+
+
+document.querySelector(".restart").addEventListener("click", () => {
+    // Stop and reset timer
+    clearInterval(timerInterval);
+    timerStarted = false;
+    timerExpired = false;
+    timeLeft = 60;
+    timerDisplay.textContent = "01:00";
+  
+    // Reset stats
+    totalTypedChars = 0;
+    correctChars = 0;
+    typedWords = 0;
+    wpmDisplay.textContent = `0 WPM`;
+    cpmDisplay.textContent = `0 CPM`;
+    accuracyDisplay.textContent = `0%`;
+  
+    // Reset the paragraph
+    insertpara();
+  
+    // Reset classes
+    const firstWord = document.querySelector('.word');
+    const firstLetter = firstWord.querySelector('.letter');
+    document.querySelectorAll(".letter").forEach(el => {
+      el.classList.remove("correct", "incorrect", "current");
+    });
+    document.querySelectorAll(".word").forEach(el => {
+      el.classList.remove("current");
+    });
+    firstWord.classList.add("current");
+    firstLetter.classList.add("current");
+  
+    // Re-focus on typing area
+    typingArea.focus();
+  });
+  
