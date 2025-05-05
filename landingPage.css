@@ -230,7 +230,7 @@ body{
 }
 
 .correct{
-  color:#b8c1ec;
+  color:rgb(11, 207, 11);
 }
 .incorrect{
   color:rgba(255, 111, 111, 0.774);
