@@ -102,14 +102,33 @@ typingArea.addEventListener("keydown", (event) => {
     let expectedLetter = currentLetterEle.textContent;
     // console.log("expected letter : " + expectedLetter);
     if (keyPressed === "Backspace") {
-        const prevLetter = currentLetterEle.previousElementSibling;
-        if (prevLetter && prevLetter.classList.contains("letter")) {        //<---------
+        let prevLetter = currentLetterEle.previousElementSibling;
+    
+        if (prevLetter) {
+            // Normal case: go to previous letter
             removeClass(currentLetterEle, "current");
             addClass(prevLetter, "current");
             removeClass(prevLetter, "correct");
             removeClass(prevLetter, "incorrect");
+        } else {
+            // if current letter is first in word, go to last letter of previous word
+            const prevWord = currentWordEle.previousElementSibling;
+            if (prevWord && prevWord.classList.contains("word")) {              //<------
+                const prevLetter = prevWord.querySelectorAll(".letter");
+                const lastLetter = prevLetter[prevLetter.length - 1];
+    
+                removeClass(currentLetterEle, "current");
+                addClass(lastLetter, "current");
+    
+                removeClass(currentWordEle, "current");
+                addClass(prevWord, "current");
+    
+                removeClass(lastLetter, "correct");
+                removeClass(lastLetter, "incorrect");
+            }
         }
-        event.preventDefault(); // prevent default backspace behavior
+    
+        event.preventDefault();
         return;
     }
 
