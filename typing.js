@@ -1,12 +1,8 @@
-const defaultStr = "the quick brown fox jumps over lazy dog speed typing accuracy rhythm practice focus keyboard monitor screen challenge letter fast sunlight window clock pencil notebook dream energy motion silent active clever power always never before behind careful simple planet rocket galaxy universe orbit gravity future digital program terminal command execute random skills boost sharp brain train moment value reason system pattern logic together instant magic wonder rapid storm update create improve master vision hope memory sharpness awareness reflex thunder start finish calm steady precise victory brave courage loyal unity honest bright shadow whisper mountain river forest ocean stormy cloudy breezy summer winter monsoon rainstorm sunrise sunset sparkle shine balance harmony dreamer achiever creator thinker maker believer friend family brother sister parent teacher student captain player team school college university science fiction reality mystery thriller comedy adventure journey path road travel explore discover invent design build code debug compile test deploy network server client cloud database array string integer boolean object variable constant loop method structure solve plan idea concept imagine ancient modern virtual space star moon earth fire air water ice metal stone grass sand wind wave fog mist spell hero villain quest castle kingdom treasure secret trap puzzle lock key portal gate realm myth legend sword shield armor battle warrior archer wizard guardian champion";
-let str = defaultStr;
-var words = str.trim().split(" ");
-
-
 let timerStarted = false;
 let timerExpired = false;
 let timeLeft = 60; // seconds
 let timerInterval;
+var ShftParaMltpl=0;
 
 let totalTypedChars = 0;
 let correctChars = 0;
@@ -31,18 +27,6 @@ function startTimer() {
 }
 
 
-function updateCursor() {
-    const existingCursor = document.querySelector('.cursor');
-    if (existingCursor) existingCursor.remove();
-
-    const currentLetterEle = document.querySelector('.letter.current');
-    if (currentLetterEle) {
-        const cursorDiv = document.createElement('div');
-        cursorDiv.classList.add('cursor');
-        currentLetterEle.appendChild(cursorDiv);
-    }
-}
-
 function updateStats() {
     const timeElapsed = 60 - timeLeft;
     const minutes = timeElapsed / 60;
@@ -57,11 +41,23 @@ function updateStats() {
   }
 
 
- str = "the quick brown fox jumps over lazy dog speed typing accuracy rhythm practice focus keyboard monitor screen challenge letter fast sunlight window clock pencil notebook dream energy motion silent active clever power always never before behind careful simple planet rocket galaxy universe orbit gravity future digital program terminal command execute random skills boost sharp brain train moment value reason system pattern logic together instant magic wonder rapid storm update create improve master vision hope memory sharpness awareness reflex thunder start finish calm steady precise victory brave courage loyal unity honest bright shadow whisper mountain river forest ocean stormy cloudy breezy summer winter monsoon rainstorm sunrise sunset sparkle shine balance harmony dreamer achiever creator thinker maker believer friend family brother sister parent teacher student captain player team school college university science fiction reality mystery thriller comedy adventure journey path road travel explore discover invent design build code debug compile test deploy network server client cloud database array string integer boolean object variable constant loop method structure solve plan idea concept imagine ancient modern virtual space star moon earth fire air water ice metal stone grass sand wind wave fog mist spell hero villain quest castle kingdom treasure secret trap puzzle lock key portal gate realm myth legend sword shield armor battle warrior archer wizard guardian champion";
- words = str.split(" ");
+const str = "the quick brown fox jumps over lazy dog speed typing accuracy rhythm practice focus keyboard monitor screen challenge letter fast sunlight window clock pencil notebook dream energy motion silent active clever power always never before behind careful simple planet rocket galaxy universe orbit gravity future digital program terminal command execute random skills boost sharp brain train moment value reason system pattern logic together instant magic wonder rapid storm update create improve master vision hope memory sharpness awareness reflex thunder start finish calm steady precise victory brave courage loyal unity honest bright shadow whisper mountain river forest ocean stormy cloudy breezy summer winter monsoon rainstorm sunrise sunset sparkle shine balance harmony dreamer achiever creator thinker maker believer friend family brother sister parent teacher student captain player team school college university science fiction reality mystery thriller comedy adventure journey path road travel explore discover invent design build code debug compile test deploy network server client cloud database array string integer boolean object variable constant loop method structure solve plan idea concept imagine ancient modern virtual space star moon earth fire air water ice metal stone grass sand wind wave fog mist spell hero villain quest castle kingdom treasure secret trap puzzle lock key portal gate realm myth legend sword shield armor battle warrior archer wizard guardian champion";
+var words = str.split(" ");
 const typingArea = document.querySelector('.typing-area');
 const para = document.querySelector(".para");
 const totalWords = 290;
+
+function updateCursor() {
+    const existingCursor = document.querySelector('.cursor');
+    if (existingCursor) existingCursor.remove();
+
+    const currentLetterEle = document.querySelector('.letter.current');
+    if (currentLetterEle) {
+        const cursorDiv = document.createElement('div');
+        cursorDiv.classList.add('cursor');
+        currentLetterEle.appendChild(cursorDiv);
+    }
+}
 
 function formatletter(word) {
     let result = ``;
@@ -104,6 +100,9 @@ updateCursor();
 
 //HANDLING THE KEYPRESS EVENTS
 typingArea.addEventListener("keydown", (event) => {
+
+
+
     if (timerExpired) {
         event.preventDefault();
         return;
@@ -117,7 +116,7 @@ typingArea.addEventListener("keydown", (event) => {
     let keyPressed = event.key;
     let currentLetterEle = document.querySelector('.letter.current');
     let currentWordEle = document.querySelector('.word.current');
-
+    
     if (!currentLetterEle || !currentWordEle) return;                   //<-------                       //<<<<
 
     let expectedLetter = currentLetterEle.textContent;                      //<<<<<
@@ -179,6 +178,14 @@ typingArea.addEventListener("keydown", (event) => {
                 updateCursor();
             }
             typedWords++;
+            const wordRect = nextWord.getBoundingClientRect();
+            const paraRect = para.getBoundingClientRect();
+            const relToTop = wordRect.top - paraRect.top;
+            console.log(relToTop);
+            if (relToTop >= 120+ShftParaMltpl*100) {
+                para.style.marginTop=`-${10+12*ShftParaMltpl}rem`;
+                ShftParaMltpl++;
+            }
         }
         return;
     }
@@ -204,10 +211,27 @@ typingArea.addEventListener("keydown", (event) => {
         addClass(nextLetter, "current");
         updateCursor();
     }
+    
 
     updateStats();
 })
 
+
+// Test Button (Generate New Text)
+document.querySelector(".test").addEventListener("click", () => {
+    let newTest = '';
+    const charsToUse = ['a', 's', 'd', 'f', 'j'," "];
+    for (let i = 0; i <400; i++) {
+        newTest += charsToUse[Math.floor(Math.random() * charsToUse.length)];
+    }
+    words=newTest.split(" ");
+    insertpara();
+    const firstWord = document.querySelector('.word');
+    const firstLetter = firstWord.querySelector('.letter');
+    firstLetter.classList.add("current");
+    firstWord.classList.add("current");
+    typingArea.focus();
+});
 
 // Restart Button
 document.querySelector(".restart").addEventListener("click", () => {
@@ -225,21 +249,7 @@ document.querySelector(".restart").addEventListener("click", () => {
     accuracyDisplay.textContent = `0%`;
 
     // Reset the string and word list to the default
-    str = defaultStr;
-    words = str.trim().split(" ");
 
-    insertpara();
-    typingArea.focus();
-});
-
-// Test Button (Generate New Text)
-document.querySelector(".test").addEventListener("click", () => {
-    let newTest = '';
-    const charsToUse = ['a', 's', 'd', 'f', 'j'," "];
-    for (let i = 0; i <400; i++) {
-        newTest += charsToUse[Math.floor(Math.random() * charsToUse.length)];
-    }
-    words=newTest.split(" ");
     insertpara();
     const firstWord = document.querySelector('.word');
     const firstLetter = firstWord.querySelector('.letter');
