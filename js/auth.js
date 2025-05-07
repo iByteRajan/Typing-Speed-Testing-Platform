@@ -83,8 +83,10 @@ window.addEventListener("load", function () {
                 console.error("Error getting user document:", error);
             });
         } else {
-            // No user is signed in
-            window.location.href = "signUpPage.html"; // redirect to login/signup if not logged in
+            const currentPage = window.location.pathname;
+            if (!currentPage.includes("loginPage.html") && !currentPage.includes("signUpPage.html")) {
+                window.location.href = "signUpPage.html";
+            }
         }
     });
 });
