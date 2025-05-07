@@ -165,10 +165,14 @@ typingArea.addEventListener("keydown", (event) => {
     // LETTER typing logic
     totalTypedChars++;
     if (keyPressed === expectedLetter) {
-        addClass(currentLetterEle, "correct");
-        correctChars++;
+        if(!currentLetterEle.classList.contains('incorrect')){
+            addClass(currentLetterEle, "correct");
+            correctChars++;
+        }
     } else {
-        addClass(currentLetterEle, "incorrect");
+        if(!currentLetterEle.classList.contains('correct')){
+            addClass(currentLetterEle, "incorrect");
+        }
     }
 
     // Move to next letter
