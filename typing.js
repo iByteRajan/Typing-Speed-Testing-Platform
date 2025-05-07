@@ -187,6 +187,29 @@ typingArea.addEventListener("keydown", (event) => {
 })
 
 
+// Restart Button
+document.querySelector(".restart").addEventListener("click", () => {
+    clearInterval(timerInterval);
+    timerStarted = false;
+    timerExpired = false;
+    timeLeft = 60;
+    timerDisplay.textContent = "01:00";
+
+    totalTypedChars = 0;
+    correctChars = 0;
+    typedWords = 0;
+    wpmDisplay.textContent = `0 WPM`;
+    cpmDisplay.textContent = `0 CPM`;
+    accuracyDisplay.textContent = `0%`;
+
+    // Reset the string and word list to the default
+    str = defaultStr;
+    words = str.trim().split(" ");
+
+    insertPara();
+    typingArea.focus();
+});
+
 // Test Button (Generate New Text)
 document.querySelector(".test").addEventListener("click", () => {
     let newTest = '';
