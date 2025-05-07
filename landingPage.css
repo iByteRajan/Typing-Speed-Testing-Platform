@@ -60,6 +60,10 @@ body{
   font-size:30px ;
   border-radius: 7px;
 }
+.test:hover{
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
+}
 .typing-area{
   display: flex;
   justify-content: center;
@@ -158,6 +162,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
 }
 .restart{
   display: flex;
@@ -171,6 +176,20 @@ body{
   border: none;
 }
 .restart:hover{
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
+}
+
+.save-scores{
+  width: 75px;
+  height: 45px;
+  border-radius: 10%;
+  background: #B8C1EC;
+  font-size: 35px;
+  border:none;
+  font-family: "VT323";
+}
+.save-scores:hover{
   transform: scale(1.1);
   transition: all 0.1s ease-in-out;
 }
@@ -255,11 +274,11 @@ body{
 
 .cursor {
   position: absolute;
-  top: 0; /* or adjust based on alignment */
+  top: 0; 
   left: 0;
   width: 2px;
   height: 100%;
-  background-color: red;
+  background-color: rgba(255, 111, 111, 0.774);
   animation: blink 1s step-start infinite;
 }
 
