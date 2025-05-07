@@ -230,3 +230,39 @@
 .practice-button:hover {
   background: linear-gradient(135deg, #2c2f50, #3c3f6f);
 }
+
+@media (max-width: 1115px){
+  .info-button{
+    font-size: 30px;
+  }
+  .practice-button{
+    font-size: 30px;
+  }
+}
+
+@media (max-width:990px){
+  .info-button, .practice-button{
+    padding: 20px 15px;
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 905px){
+  .weakest-box{
+    font-size: 30px;
+    padding: 20px 30px;
+  }
+  .bottom-section{
+    gap: 50px;
+  }
+}
+
+@media (max-width:870px) {
+  .weakest-box{
+    font-size: 25px;
+    padding: 20px 30px;
+  }
+  .bottom-section{
+    gap: 40px;
+  }
+}
