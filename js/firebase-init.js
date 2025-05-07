@@ -15,3 +15,4 @@ const auth = firebase.auth();
 
 window.auth = auth;
 window.db = db;
+
