@@ -247,3 +247,30 @@ body{
     right: 5vw;
   }
 }
+
+
+.letter {
+  position: relative;
+}
+
+.cursor {
+  position: absolute;
+  top: 0; /* or adjust based on alignment */
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background-color: red;
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

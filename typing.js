@@ -31,6 +31,18 @@ function startTimer() {
 }
 
 
+function updateCursor() {
+    const existingCursor = document.querySelector('.cursor');
+    if (existingCursor) existingCursor.remove();
+
+    const currentLetterEle = document.querySelector('.letter.current');
+    if (currentLetterEle) {
+        const cursorDiv = document.createElement('div');
+        cursorDiv.classList.add('cursor');
+        currentLetterEle.appendChild(cursorDiv);
+    }
+}
+
 function updateStats() {
     const timeElapsed = 60 - timeLeft;
     const minutes = timeElapsed / 60;
@@ -87,6 +99,7 @@ let firstWord = document.querySelector('.word');
 let firstLetter = document.querySelector('.letter');
 firstLetter.classList.add("current");
 firstWord.classList.add("current");
+updateCursor();
 
 
 //HANDLING THE KEYPRESS EVENTS
@@ -124,6 +137,7 @@ typingArea.addEventListener("keydown", (event) => {
         if (prevLetter) {
             removeClass(currentLetterEle, "current");
             addClass(prevLetter, "current");
+            updateCursor();
             removeClass(prevLetter, "correct");
             removeClass(prevLetter, "incorrect");
         } else {
@@ -137,6 +151,7 @@ typingArea.addEventListener("keydown", (event) => {
 
                 removeClass(currentWordEle, "current");
                 addClass(prevWord, "current");
+                updateCursor();
 
                 removeClass(lastLetter, "correct");
                 removeClass(lastLetter, "incorrect");
@@ -161,6 +176,7 @@ typingArea.addEventListener("keydown", (event) => {
             if (firstLetter) {
                 removeClass(currentLetterEle, "current");
                 addClass(firstLetter, "current");
+                updateCursor();
             }
             typedWords++;
         }
@@ -186,6 +202,7 @@ typingArea.addEventListener("keydown", (event) => {
     if (nextLetter && nextLetter.classList.contains("letter")) {
         removeClass(currentLetterEle, "current");
         addClass(nextLetter, "current");
+        updateCursor();
     }
 
     updateStats();
