@@ -55,7 +55,7 @@ body{
   font-family: "VT323";
   font-weight: 10px;
   margin-left: 20%;
-  width:130px;
+  width:160px;
   height: 50px;
   font-size:30px ;
   border-radius: 7px;
@@ -82,6 +82,7 @@ body{
   position: relative;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 #timer{
@@ -249,7 +250,7 @@ body{
 }
 
 .correct{
-  color:rgb(11, 207, 11);
+  color:#aeb6df;
 }
 .incorrect{
   color:rgba(255, 111, 111, 0.774);
@@ -263,6 +264,7 @@ body{
 
   .header-center {
     right: 5vw;
+
   }
 }
 
@@ -291,4 +293,34 @@ body{
   100% {
     opacity: 0;
   }
+}
+
+.para.fade-out {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 1s ease-in-out;
+}
+
+#timer.fade-out {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 1.5s ease-in-out;
+}
+
+#accuracy.centered{
+  transform: translateX(0%);
+  left: 43%;
+  transition: all 2s ease-in-out;
+}
+
+#WPM.centered{
+  transform: translateX(-50%);
+  left: 40%;
+  transition: all 2s ease-in-out;
+}
+
+#CPM.centered{
+  transform: translateX(-50%);
+  left: 60%;
+  transition: all 2s ease-in-out;
 }
