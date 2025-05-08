@@ -69,6 +69,8 @@ window.addEventListener("load", function () {
         if (user) {
             const userId = user.uid;
 
+            // Fetching user data from Firestore
+
             db.collection("users").doc(userId).get().then((doc) => {
                 if (doc.exists) {
                     const username = doc.data().username;
@@ -82,7 +84,33 @@ window.addEventListener("load", function () {
             }).catch((error) => {
                 console.error("Error getting user document:", error);
             });
-        } else {
+
+            // Fetching scores to calculate average WPM
+
+            db.collection("users").doc(userId).collection("scores").get().then((querySnapshot) => {
+            let totalWPM = 0;
+            let count = 0;
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                if (data.wpm !== undefined) {
+                    totalWPM += data.wpm;
+                    count++;
+                }
+            });
+
+            const avgWPM = count > 0 ? Math.round(totalWPM / count) : 0;
+
+            const avgWpmText = document.querySelector(".info-button");
+            if (avgWpmText) {
+                avgWpmText.textContent = `Avg Speed: ${avgWPM} WPM`;
+            }
+        }).catch((error) => {
+            console.error("Error fetching scores:", error);
+        });
+
+        }
+        else {
             const currentPage = window.location.pathname;
             if (!currentPage.includes("loginPage.html") && !currentPage.includes("signUpPage.html")) {
                 window.location.href = "signUpPage.html";
