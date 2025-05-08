@@ -188,6 +188,7 @@
   background: #ccc;
   margin: 15px 0;
   border: none;
+  display: block;
 }
 
 .letters {
@@ -262,7 +263,21 @@
     font-size: 25px;
     padding: 20px 30px;
   }
+  
   .bottom-section{
     gap: 40px;
+  }
+}
+
+@media (max-width: 840px) {
+  .weakest-box{
+    font-size: 20px;
+    padding: 20px 30px;
+  }
+  .divider{
+    display: none;
+  }
+  .bottom-section{
+    gap: 30px;
   }
 }

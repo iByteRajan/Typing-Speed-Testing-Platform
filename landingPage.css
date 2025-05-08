@@ -240,21 +240,6 @@ body{
   margin:0px;
   word-spacing:0.3rem;
   text-align:center;
-  filter:blur(5px);
-}
-.message{
-  position:relative;
-  top:140px;
-  left:530px;
-}
-.typing-area:focus .message{
-  display:none;
-}
-.typing-area:focus{
-  filter:blur(0px);
-}
-.typing-area:focus .para{
-  filter:blur(0px);
 }
 .word{
   display:inline-block;
