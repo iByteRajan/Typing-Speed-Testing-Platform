@@ -39,7 +39,7 @@ function startTimer() {
             timerDisplay.classList.add("fade-out");
         }
     }, 1000);
-    man.style.animation = "moveRight 60s linear forwards";
+    man.style.animation = `moveRight ${animationDuration/1000}s linear forwards`;
 }
 
 
@@ -386,6 +386,7 @@ if (mode === "suddenDeath") {
 } else if (mode === "sprint") {
     console.log("Sprint mode selected");
     timeLeft = 20;
+    animationDuration=20000;
 } else {
     console.log("Normal mode selected");
 }
