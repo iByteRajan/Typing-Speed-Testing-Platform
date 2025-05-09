@@ -328,3 +328,34 @@ document.querySelector(".save-scores").addEventListener("click", () => {
     const stats = getCurrentStats();
     saveScore(stats.wpm, stats.cpm, stats.accuracy);
 });
+
+//Modes selection
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modeBtn = document.querySelector(".modes");
+  const modeForm = document.getElementById("modeForm");
+  const modeSelectionForm = document.getElementById("modeSelectionForm");
+
+  modeBtn.addEventListener("click", () => {
+    modeForm.classList.toggle("hidden");
+  });
+
+  modeSelectionForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const selectedMode = document.querySelector('input[name="mode"]:checked').value;
+    localStorage.setItem("typingMode", selectedMode);
+    window.location.href = "landingPage.html";
+  });
+});
+
+
+const mode = localStorage.getItem("typingMode") || "normal";
+
+if (mode === "suddenDeath") {
+  console.log("Sudden Death mode selected");
+} else if (mode === "sprint") {
+    console.log("Sprint mode selected");
+} else {
+    console.log("Normal mode selected");
+}
+

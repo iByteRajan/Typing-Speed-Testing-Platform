@@ -32,8 +32,18 @@
         </div>
         <div class="right">
           <div class="header-center">
-            <img src="./IMAGES/leaderboard.png" alt="">
-            <div style="font-size: 50px; color:#b8c1ec; ">Leaderboard</div>
+            <!-- <img src="./IMAGES/leaderboard.png" alt=""> -->
+            <button style="font-size: 35px; color:#232946; " class=" modes">Mode</button>
+
+            <div id="modeForm" class="hidden">
+              <form id="modeSelectionForm">
+                <label><input type="radio" name="mode" value="normal" checked> Normal Mode</label><br>
+                <label><input type="radio" name="mode" value="suddenDeath"> Sudden Death Mode</label><br>
+                <label><input type="radio" name="mode" value="sprint"> Sprint Mode</label><br>
+                <button type="submit" class="selectModeBtn">Start</button>
+              </form>
+            </div>
+
             <div><button class="test">Custom Test</div>
           </div>
           <a href="profile.html" class="header-right">
@@ -69,9 +79,7 @@
     </div>
   </main>
 
-  <script src="typing.js"></script>
+  <script src="typing.js" defer></script>
 </body>
 
 </html>
-
-
