@@ -75,7 +75,7 @@ function updateCursor() {
     const currentLetterEle = document.querySelector('.letter.current');
     if (currentLetterEle) {
         cursorDiv = document.createElement('div');
-        const cursorDiv = document.createElement('div');
+        cursorDiv = document.createElement('div');
         cursorDiv.classList.add('cursor');
         currentLetterEle.appendChild(cursorDiv);
     }
