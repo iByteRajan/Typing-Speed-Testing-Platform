@@ -259,10 +259,10 @@ body{
 }
 
 .correct{
-  color:#aeb6df;
+  color:#232946;
 }
 .incorrect{
-  color:rgba(255, 111, 111, 0.774);
+  color:rgba(222, 68, 68, 0.925);
   font-weight: 500;
 }
 
