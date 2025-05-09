@@ -3,6 +3,11 @@ let timerExpired = false;
 let timeLeft = 60; // seconds
 let timerInterval;
 var ShftParaMltpl = 0;
+let animationDuration=60000;
+var animationStartTime;
+var cursorDiv;
+const man =document.querySelector(".man");
+
 
 let totalTypedChars = 0;
 let correctChars = 0;
@@ -15,11 +20,13 @@ const cpmDisplay = document.getElementById("CPM");
 const accuracyDisplay = document.getElementById("accuracy");
 
 function startTimer() {
+    animationStartTime = Date.now();
     timerInterval = setInterval(() => {
         timeLeft--;
         timerDisplay.textContent = `00:${timeLeft < 10 ? "0" : ""}${timeLeft}`;
 
         if (timeLeft === 0) {
+            man.style.animationPlayState = "paused";
             clearInterval(timerInterval);
             timerExpired = true;
             typingArea.blur(); // stop typing
@@ -32,6 +39,7 @@ function startTimer() {
             timerDisplay.classList.add("fade-out");
         }
     }, 1000);
+    man.style.animation = "moveRight 60s linear forwards";
 }
 
 
@@ -39,8 +47,7 @@ function updateStats() {
     const stats = getCurrentStats();
     wpmDisplay.textContent = `${stats.wpm} WPM`;
     cpmDisplay.textContent = `${stats.cpm} CPM`;
-    accuracyDisplay.textContent = `${stats.accuracy}%`;
-
+    accuracyDisplay.textContent = `acc: ${stats.accuracy}%`;
 }
 
 function getCurrentStats() {
@@ -67,6 +74,7 @@ function updateCursor() {
 
     const currentLetterEle = document.querySelector('.letter.current');
     if (currentLetterEle) {
+        cursorDiv = document.createElement('div');
         const cursorDiv = document.createElement('div');
         cursorDiv.classList.add('cursor');
         currentLetterEle.appendChild(cursorDiv);
@@ -92,12 +100,19 @@ function saveScore(wpm, cpm, accuracy) {
     db.collection("users").doc(userId).collection("scores").add(scoreData)
         .then((docRef) => {
             console.log("Score saved with ID:", docRef.id);
+            const timeElapsed = Date.now() - animationStartTime;
+            man.style.animation = "none";
             alert("✅ Score saved successfully!");
             scoreSaved = true;
         })
         .catch((error) => {
             console.error("Error saving score:", error);
+            const timeElapsed = Date.now() - animationStartTime;
+            man.style.animation = "none";
             alert("❌ Error saving score. Try again.");
+            const remainingTime = animationDuration - timeElapsed;
+            man.style.animation = `walk ${remainingTime}ms linear forwards`;
+            animationStartTime = Date.now();
         });
 }
 
@@ -220,6 +235,7 @@ typingArea.addEventListener("keydown", (event) => {
                 updateCursor();
             }
             typedWords++;
+            // handling the scrollin of the para
             const wordRect = nextWord.getBoundingClientRect();
             const paraRect = para.getBoundingClientRect();
             const relToTop = wordRect.top - paraRect.top;
@@ -256,6 +272,9 @@ typingArea.addEventListener("keydown", (event) => {
 
     // Move to next letter
     const nextLetter = currentLetterEle.nextElementSibling;
+    if(nextLetter===null){
+        cursorDiv.classList.add("moveCursorSpc");
+    }
 
     if (nextLetter && nextLetter.classList.contains("letter")) {
         removeClass(currentLetterEle, "current");
@@ -295,6 +314,7 @@ document.querySelector(".test").addEventListener("click", () => {
 
 // Restart Button
 document.querySelector(".restart").addEventListener("click", () => {
+    man.style.animation = "none"; 
     clearInterval(timerInterval);
     timerStarted = false;
     timerExpired = false;
