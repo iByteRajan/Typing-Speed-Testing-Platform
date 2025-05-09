@@ -385,9 +385,11 @@ if (mode === "suddenDeath") {
     console.log("Sudden Death mode selected");
 } else if (mode === "sprint") {
     console.log("Sprint mode selected");
+    timeLeft = 20;
 } else {
     console.log("Normal mode selected");
 }
+timerDisplay.textContent = `00:${timeLeft < 10 ? "0" : ""}${timeLeft} `;
 
 
 // Sudden Death Mode
