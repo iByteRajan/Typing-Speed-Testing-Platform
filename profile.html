@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +20,7 @@
 <body>
   <div class="container">
 
- 
+
     <header class="top-header">
       <h1 class="left-title">Typos |</h1>
       <div class="yu">
@@ -31,34 +32,28 @@
     </header>
 
     <section class="profile-section">
-       <img src="./IMAGES/left-navigation-back-svgrepo-com (1).svg" alt="" class="arrow">
-      
-       <div class="bar">
-      <div class="left-box">
-        <p class="small-label">standing</p>
-        <h2 class="big-number">5.</h2>
-      </div>
+      <img src="./IMAGES/left-navigation-back-svgrepo-com (1).svg" alt="" class="arrow">
 
-      <div class="profile-pic">
-        <img src="./IMAGES/Woman3.jpg" alt="Profile Picture">
-      </div>
+      <div class="bar">
 
-      <div class="right-box">
-        <p class="small-label">username</p>
-        <h2 class="username-text">...</h2>
-      </div>
+        <div class="profile-pic">
+          <img src="./IMAGES/Woman3.jpg" alt="Profile Picture">
+        </div>
+
+        <div class="right-box">
+          <p class="small-label">username</p>
+          <h2 class="username-text">...</h2>
+        </div>
     </section>
 
-  
+
     <section class="bottom-section">
-     
-      <div class="weakest-box">
-        <p class="weakest-title">your weakest letters :</p>
-        <hr class="divider">
-        <p class="letters">J - D - N - F - S</p>
+
+      <div id="funFactBox" class="fun-fact-box">
+        <h3>💡 Typing Fun Fact</h3>
+        <p id="factDisplay" style="font-size: 35px;">Loading...</p>
       </div>
 
-      
       <div class="buttons-box">
         <button class="info-button">avg speed: ...</button>
         <button class="practice-button">custom practise</button>
@@ -66,5 +61,74 @@
     </section>
 
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const facts = [
+        "The QWERTY layout was designed in the 1870s to prevent typewriter jams.",
+        "The word 'typewriter' is made using only the top row of letters on a QWERTY keyboard.",
+        "The fastest typist in the world, Barbara Blackburn, reached 212 WPM.",
+        "Typing at 60–70 WPM is considered a professional speed.",
+        "Dvorak keyboard layout is designed for efficiency, but never replaced QWERTY.",
+        "The longest word that can be typed using only your left hand is 'stewardesses'.",
+        "The longest word typed with only the right hand is 'lollipop'.",
+        "Most people blink less while typing intensely, similar to gaming.",
+        "Typing improves hand-eye coordination and memory over time.",
+        "You can type faster if you don't look at the keyboard — called 'touch typing'.",
+        "There are over 100 different keyboard layouts around the world.",
+        "The average typist makes about 8 errors per 100 words typed.",
+        "The spacebar is the most frequently pressed key on the keyboard.",
+        "Early typewriters didn't have a '1' key — typists used a lowercase 'L' instead.",
+        "Typing helps improve language skills and spelling automatically.",
+        "The first email ever sent was by Ray Tomlinson in 1971 — it said 'QWERTYUIOP'.",
+        "Typing burns about 41 calories per hour — keep typing to stay fit!",
+        "The backspace key is the most used correction key on a keyboard.",
+        "Typing rhythm can be used to uniquely identify individuals — like a fingerprint!",
+        "Keyboards are one of the most germ-filled devices in your house or office.",
+        "The original QWERTY layout was patented by Christopher Latham Sholes.",
+        "Typing was once a rare skill — it used to be taught in secretarial schools.",
+        "Gamers and typists often develop strong pinky and ring fingers.",
+        "Fast typists use muscle memory, not just visual memory, to type.",
+        "The CAPS LOCK key was originally called the 'Shift Lock'.",
+        "Mechanical keyboards are louder but preferred by many typists for feedback.",
+        "Your WPM can improve by up to 50% with consistent daily practice.",
+        "Typing skills are linked to better cognitive and multitasking abilities.",
+        "Typing in short bursts with breaks improves speed more than long sessions.",
+        "Typing tutors like Mavis Beacon made learning fun in the 90s.",
+        "Keyboard shortcuts can save you hours every week if used regularly.",
+        "WPM isn't everything — accuracy matters more in real scenarios.",
+        "The butterfly keyboard was Apple’s controversial attempt at thinner keyboards.",
+        "Some typists can even type blindfolded — purely by muscle memory.",
+        "The average typing speed worldwide is about 36–40 WPM.",
+        "Ergonomic keyboards are designed to reduce strain and injuries.",
+        "Typing improves not just speed, but also confidence in communication.",
+        "The Escape key was originally added to interrupt computers.",
+        "Some professional typists earn money transcribing audio or data.",
+        "Typing in dim light can slow down your speed significantly.",
+        "There are typing competitions worldwide — even Guinness records for it.",
+        "Bilingual typists often have different speeds in different languages.",
+        "Practicing with quotes or famous lines helps improve accuracy and rhythm.",
+        "There are full mechanical keyboards smaller than a credit card!",
+        "Keyboard mash symbols like '@#$%!' are called 'grawlix'.",
+        "Some people type with two fingers at over 80 WPM!",
+        "Typing can help people with dyslexia improve pattern recognition.",
+        "Most coding languages are easier to type on QWERTY than Dvorak.",
+        "Typing while speaking aloud helps reinforce muscle memory.",
+        "You can type over 400 characters per minute at high WPM speeds!"
+      ];
+
+
+      const factDisplay = document.getElementById("factDisplay");
+
+      if (factDisplay) {
+        const randomFact = facts[Math.floor(Math.random() * facts.length)];
+        factDisplay.textContent = randomFact;
+      } else {
+        console.error("Fact display element not found!");
+      }
+    });
+  </script>
+
 </body>
+
 </html>

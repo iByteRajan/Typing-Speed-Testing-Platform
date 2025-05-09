@@ -329,7 +329,7 @@ document.querySelector(".save-scores").addEventListener("click", () => {
     saveScore(stats.wpm, stats.cpm, stats.accuracy);
 });
 
-//Modes selection
+// Modes selection
 
 document.addEventListener("DOMContentLoaded", () => {
   const modeBtn = document.querySelector(".modes");
@@ -359,3 +359,24 @@ if (mode === "suddenDeath") {
     console.log("Normal mode selected");
 }
 
+
+// Typing Facts
+
+document.addEventListener("DOMContentLoaded", () => {
+  const facts = [
+    "The QWERTY layout was designed to prevent jamming on mechanical typewriters.",
+    "The average person types at 38–40 WPM (words per minute).",
+    "Touch typing is typing without looking at the keyboard.",
+    "Mark Twain was one of the first authors to submit a typed manuscript.",
+    "Typing with 10 fingers is called 'touch typing' – and it’s faster!",
+    "The longest word you can type with just your left hand is 'stewardesses'.",
+    "The word 'typewriter' is typed using only the top row of keys!",
+    "Barbara Blackburn was the fastest English typist, clocked at 212 WPM.",
+    "The Dvorak layout is an alternative to QWERTY that claims to be faster.",
+    "You blink less while typing intensely — like when you're gaming!"
+  ];
+
+  const randomFact = facts[Math.floor(Math.random() * facts.length)];
+  const factDisplay = document.getElementById("factDisplay");
+  if (factDisplay) factDisplay.textContent = randomFact;
+});

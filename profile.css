@@ -121,7 +121,7 @@
   z-index: 100000;
   position: relative;
   top: -1.5vh;
-  left: 2.604vw;
+  left:  4.604vw;
 }
 
 .profile-pic img {
@@ -135,14 +135,6 @@
   color: #B8C1EC;
   padding-top: 2.739vh;
   padding-left: 1.823vw;
-}
-
-.big-number {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 2.6vi;
-  color: #232946;
-  padding-left: 2.6vw;
-
 }
 
 .username-text {
@@ -161,35 +153,26 @@
   /* margin-left: 175px; */
 }
 
-
-.weakest-box {
-  background: #ffffff;
-  padding: 30px 40px;
-  border-radius: 20px;
-  box-shadow:10px 10px 10px rgba(85, 80, 80, 0.907);
-  text-align: center;
-  width: 600px;
-  height: 300px;
+.fun-fact-box {
+  background-color: white;
+  color: #b8c1ec;
+  padding: 20px;
+  border-radius: 15px;
+  width: 30vw;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+.fun-fact-box:hover {
+  transform: scale(1.02);
+}
+.fun-fact-box h3 {
+  margin-top: 0;
+  font-size: 30px;
+  color: #232946;
+  padding-bottom: 25px ;
 }
 
-.weakest-title {
-  font-size: 50px;
-  font-weight: lighter;
-  margin-bottom: 25px;
-  margin-top: 25px;
-  color: #222;
-  display: inline-block;
-
-}
-
-.divider {
-  width: 100%;
-  height: 1px;
-  background: #ccc;
-  margin: 15px 0;
-  border: none;
-  display: block;
-}
 
 .letters {
   font-size: 42px;
