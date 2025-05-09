@@ -240,6 +240,15 @@ typingArea.addEventListener("keydown", (event) => {
             correctChars++;
         }
     } else {
+        if (mode === "suddenDeath") {
+            addClass(currentLetterEle, "incorrect");
+            updateStats();
+            setTimeout(() => {
+                endSuddenDeathMode();
+            }, 100); // allow red flash before stop
+            return;
+        }
+
         if (!currentLetterEle.classList.contains('correct')) {
             addClass(currentLetterEle, "incorrect");
         }
@@ -262,8 +271,8 @@ typingArea.addEventListener("keydown", (event) => {
 // Test Button (Generate New Text)
 document.querySelector(".test").addEventListener("click", () => {
     let input = prompt("Enter Five Characters For Custom Practice With space:");
-let charsToUse = input.split('');
-if(charsToUse.length!=9) alert("Invalid Inputs");
+    let charsToUse = input.split('');
+    if (charsToUse.length != 9) alert("Invalid Inputs");
     let newTest = '';
     for (let i = 0; i < 400; i++) {
         newTest += charsToUse[Math.floor(Math.random() * charsToUse.length)];
@@ -301,7 +310,7 @@ document.querySelector(".restart").addEventListener("click", () => {
 
     document.querySelector(".para").classList.remove("fade-out");
     document.querySelector("#WPM").classList.remove("centered");
-    document.querySelector("#CPM").classList.remove("centered");    
+    document.querySelector("#CPM").classList.remove("centered");
     document.querySelector("#accuracy").classList.remove("centered");
     document.querySelector("#timer").classList.remove("fade-out");
 
@@ -333,27 +342,27 @@ document.querySelector(".save-scores").addEventListener("click", () => {
 // Modes selection
 
 document.addEventListener("DOMContentLoaded", () => {
-  const modeBtn = document.querySelector(".modes");
-  const modeForm = document.getElementById("modeForm");
-  const modeSelectionForm = document.getElementById("modeSelectionForm");
+    const modeBtn = document.querySelector(".modes");
+    const modeForm = document.getElementById("modeForm");
+    const modeSelectionForm = document.getElementById("modeSelectionForm");
 
-  modeBtn.addEventListener("click", () => {
-    modeForm.classList.toggle("hidden");
-  });
+    modeBtn.addEventListener("click", () => {
+        modeForm.classList.toggle("hidden");
+    });
 
-  modeSelectionForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const selectedMode = document.querySelector('input[name="mode"]:checked').value;
-    localStorage.setItem("typingMode", selectedMode);
-    window.location.href = "landingPage.html";
-  });
+    modeSelectionForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const selectedMode = document.querySelector('input[name="mode"]:checked').value;
+        localStorage.setItem("typingMode", selectedMode);
+        window.location.href = "landingPage.html";
+    });
 });
 
 
 const mode = localStorage.getItem("typingMode") || "normal";
 
 if (mode === "suddenDeath") {
-  console.log("Sudden Death mode selected");
+    console.log("Sudden Death mode selected");
 } else if (mode === "sprint") {
     console.log("Sprint mode selected");
 } else {
@@ -361,23 +370,28 @@ if (mode === "suddenDeath") {
 }
 
 
-// Typing Facts
+// Sudden Death Mode
 
-document.addEventListener("DOMContentLoaded", () => {
-  const facts = [
-    "The QWERTY layout was designed to prevent jamming on mechanical typewriters.",
-    "The average person types at 38–40 WPM (words per minute).",
-    "Touch typing is typing without looking at the keyboard.",
-    "Mark Twain was one of the first authors to submit a typed manuscript.",
-    "Typing with 10 fingers is called 'touch typing' – and it’s faster!",
-    "The longest word you can type with just your left hand is 'stewardesses'.",
-    "The word 'typewriter' is typed using only the top row of keys!",
-    "Barbara Blackburn was the fastest English typist, clocked at 212 WPM.",
-    "The Dvorak layout is an alternative to QWERTY that claims to be faster.",
-    "You blink less while typing intensely — like when you're gaming!"
-  ];
+const modeForm = document.getElementById("modeSelectionForm");
 
-  const randomFact = facts[Math.floor(Math.random() * facts.length)];
-  const factDisplay = document.getElementById("factDisplay");
-  if (factDisplay) factDisplay.textContent = randomFact;
+modeForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const selectedMode = document.querySelector('input[name="mode"]:checked').value;
+    mode = selectedMode;
+    location.reload(); // refresh to apply mode changes
 });
+
+function endSuddenDeathMode() {
+    typingArea.blur();
+    clearInterval(timerInterval);
+    timerExpired = true;
+
+    para.classList.add("fade-out");
+    wpmDisplay.classList.add("centered");
+    cpmDisplay.classList.add("centered");
+    accuracyDisplay.classList.add("centered");
+    timerDisplay.classList.add("fade-out");
+
+    updateStats();
+    alert("Game Over! You made a mistake in Sudden Death Mode.");
+}
