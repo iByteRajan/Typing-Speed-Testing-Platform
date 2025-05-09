@@ -1,4 +1,3 @@
-
 let timerStarted = false;
 let timerExpired = false;
 let timeLeft = 60; // seconds
@@ -262,8 +261,10 @@ typingArea.addEventListener("keydown", (event) => {
 
 // Test Button (Generate New Text)
 document.querySelector(".test").addEventListener("click", () => {
+    let input = prompt("Enter Five Characters For Custom Practice With space:");
+let charsToUse = input.split('');
+if(charsToUse.length!=9) alert("Invalid Inputs");
     let newTest = '';
-    const charsToUse = ['a', 's', 'd', 'f', 'j', " "];
     for (let i = 0; i < 400; i++) {
         newTest += charsToUse[Math.floor(Math.random() * charsToUse.length)];
     }
