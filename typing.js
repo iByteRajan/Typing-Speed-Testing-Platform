@@ -34,15 +34,17 @@ function startTimer() {
             timerExpired = true;
             typingArea.blur(); // stop typing
             updateStats();
-            const stats = getCurrentStats();
-            saveScore(stats.wpm, stats.cpm, stats.accuracy);
-            saveScore();
-
             para.classList.add("fade-out");
             wpmDisplay.classList.add("centered");
             cpmDisplay.classList.add("centered");
             accuracyDisplay.classList.add("centered");
             timerDisplay.classList.add("fade-out");
+            
+            const stats = getCurrentStats();
+            saveScore(stats.wpm, stats.cpm, stats.accuracy);
+            saveScore();
+
+            
         }
     }, 1000);
     man.style.animation = `moveRight ${animationDuration / 1000}s linear forwards`;
@@ -108,7 +110,7 @@ function saveScore(wpm, cpm, accuracy) {
             console.log("Score saved with ID:", docRef.id);
             const timeElapsed = Date.now() - animationStartTime;
             man.style.animation = "none";
-            alert("✅ Score saved successfully!");
+            // alert("✅ Score saved successfully!");
             scoreSaved = true;
         })
         .catch((error) => {
