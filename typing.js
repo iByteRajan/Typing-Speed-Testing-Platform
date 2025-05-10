@@ -34,6 +34,9 @@ function startTimer() {
             timerExpired = true;
             typingArea.blur(); // stop typing
             updateStats();
+            const stats = getCurrentStats();
+            saveScore(stats.wpm, stats.cpm, stats.accuracy);
+            saveScore();
 
             para.classList.add("fade-out");
             wpmDisplay.classList.add("centered");
@@ -54,10 +57,10 @@ function updateStats() {
 }
 
 function getCurrentStats() {
-    const timeElapsed = flagSprint ? 20 - timeLeft : 60 - timeLeft;    const minutes = timeElapsed / 60;
+    const timeElapsed = flagSprint ? 20 - timeLeft : 60 - timeLeft; const minutes = timeElapsed / 60;
     console.log(timeElapsed);
 
-    const wpm = minutes > 0 ? Math.round((correctChars/5)/minutes) : 0;
+    const wpm = minutes > 0 ? Math.round((correctChars / 5) / minutes) : 0;
     const cpm = minutes > 0 ? Math.round(totalTypedChars / minutes) : 0;
     const accuracy = totalTypedChars > 0 ? Math.round((correctChars / totalTypedChars) * 100) : 100;
 
@@ -205,7 +208,7 @@ window.addEventListener("keydown", (event) => {
     if (keyPressed === "Backspace") {
         event.preventDefault();
 
-        if(currentLetterEle.classList.contains("correct")) correctChars--;
+        if (currentLetterEle.classList.contains("correct")) correctChars--;
         if (currentLetterEle.classList.contains("correct") || currentLetterEle.classList.contains("incorrect")) {
             removeClass(currentLetterEle, "correct");
             removeClass(currentLetterEle, "incorrect");
@@ -224,7 +227,7 @@ window.addEventListener("keydown", (event) => {
             removeClass(prevLetter, "incorrect");
         } else {
             const prevWord = currentWordEle.previousElementSibling;
-            if(prevWord.lastChild.classList.contains("correct")) correctChars--;
+            if (prevWord.lastChild.classList.contains("correct")) correctChars--;
             if (prevWord && prevWord.classList.contains("word")) {
                 const prevLetters = prevWord.querySelectorAll(".letter");
                 const lastLetter = prevLetters[prevLetters.length - 1];
@@ -325,38 +328,38 @@ window.addEventListener("keydown", (event) => {
 
 //test button
 document.querySelector(".test").addEventListener("click", () => {
-  let input = prompt("Enter Five Characters For Custom Practice With space:");
-  let charsToUse = input.split("");
-  if (charsToUse.length != 9) {
-    alert("Invalid Inputs");
-    return;
-  }
-  let newTest = "";
-  for (let i = 0; i < 400; i++) {
-    let char = charsToUse[Math.floor(Math.random() * charsToUse.length)];
-
-    // Avoid adding a space after a space
-    if (char === " " && newTest.endsWith(" ")) {
-      i--; // Don't count this iteration
-      continue;
+    let input = prompt("Enter Five Characters For Custom Practice With space:");
+    let charsToUse = input.split("");
+    if (charsToUse.length != 9) {
+        alert("Invalid Inputs");
+        return;
     }
+    let newTest = "";
+    for (let i = 0; i < 400; i++) {
+        let char = charsToUse[Math.floor(Math.random() * charsToUse.length)];
 
-    newTest += char;
-  }
-  words = newTest.split(" ");
+        // Avoid adding a space after a space
+        if (char === " " && newTest.endsWith(" ")) {
+            i--; // Don't count this iteration
+            continue;
+        }
 
-  document.querySelector(".para").classList.remove("fade-out");
-  document.querySelector("#WPM").classList.remove("centered");
-  document.querySelector("#CPM").classList.remove("centered");
-  document.querySelector("#accuracy").classList.remove("centered");
-  document.querySelector("#timer").classList.remove("fade-out");
+        newTest += char;
+    }
+    words = newTest.split(" ");
 
-  insertpara();
-  const firstWord = document.querySelector(".word");
-  const firstLetter = firstWord.querySelector(".letter");
-  firstLetter.classList.add("current");
-  firstWord.classList.add("current");
-  typingArea.focus();
+    document.querySelector(".para").classList.remove("fade-out");
+    document.querySelector("#WPM").classList.remove("centered");
+    document.querySelector("#CPM").classList.remove("centered");
+    document.querySelector("#accuracy").classList.remove("centered");
+    document.querySelector("#timer").classList.remove("fade-out");
+
+    insertpara();
+    const firstWord = document.querySelector(".word");
+    const firstLetter = firstWord.querySelector(".letter");
+    firstLetter.classList.add("current");
+    firstWord.classList.add("current");
+    typingArea.focus();
 });
 
 // Restart Button
@@ -391,20 +394,20 @@ document.querySelector(".restart").addEventListener("click", () => {
     typingArea.focus();
 });
 
-document.querySelector(".save-scores").addEventListener("click", () => {
-    if (scoreSaved) {
-        alert("⚠ Score already saved.");
-        return;
-    }
+// document.querySelector(".save-scores").addEventListener("click", () => {
+//     if (scoreSaved) {
+//         alert("⚠ Score already saved.");
+//         return;
+//     }
 
-    if (!timerExpired) {
-        const confirmSave = confirm("⏱ The timer hasn't expired yet. Are you sure you want to save your current score?");
-        if (!confirmSave) return;
-    }
+//     if (!timerExpired) {
+//         const confirmSave = confirm("⏱ The timer hasn't expired yet. Are you sure you want to save your current score?");
+//         if (!confirmSave) return;
+//     }
 
-    const stats = getCurrentStats();
-    saveScore(stats.wpm, stats.cpm, stats.accuracy);
-});
+//     const stats = getCurrentStats();
+//     saveScore(stats.wpm, stats.cpm, stats.accuracy);
+// });
 
 // Modes selection
 
@@ -432,13 +435,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const mode = localStorage.getItem("typingMode") || "normal";
 
-var flagSprint=false;
+var flagSprint = false;
 if (mode === "suddenDeath") {
     console.log("Sudden Death mode selected");
 } else if (mode === "sprint") {
     console.log("Sprint mode selected");
     timeLeft = 20;
-    flagSprint=true;
+    flagSprint = true;
     animationDuration = 20000;
 } else {
     console.log("Normal mode selected");
