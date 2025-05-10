@@ -3,10 +3,10 @@ let timerExpired = false;
 let timeLeft = 60; // seconds
 let timerInterval;
 var ShftParaMltpl = 0;
-let animationDuration=60000;
+let animationDuration = 60000;
 var animationStartTime;
 var cursorDiv;
-const man =document.querySelector(".man");
+const man = document.querySelector(".man");
 
 
 let totalTypedChars = 0;
@@ -39,7 +39,7 @@ function startTimer() {
             timerDisplay.classList.add("fade-out");
         }
     }, 1000);
-    man.style.animation = `moveRight ${animationDuration/1000}s linear forwards`;
+    man.style.animation = `moveRight ${animationDuration / 1000}s linear forwards`;
 }
 
 
@@ -234,7 +234,17 @@ typingArea.addEventListener("keydown", (event) => {
                 addClass(firstLetter, "current");
                 updateCursor();
             }
-            typedWords++;
+
+            // Check if the current word is fully typed
+            const allLetters = currentWordEle.querySelectorAll(".letter");
+            const isWordTyped = Array.from(allLetters).every(letter =>
+                letter.classList.contains("correct") || letter.classList.contains("incorrect")
+            );
+
+            if (isWordTyped) {
+                typedWords++;
+            }
+
             // handling the scrollin of the para
             const wordRect = nextWord.getBoundingClientRect();
             const paraRect = para.getBoundingClientRect();
@@ -272,7 +282,7 @@ typingArea.addEventListener("keydown", (event) => {
 
     // Move to next letter
     const nextLetter = currentLetterEle.nextElementSibling;
-    if(nextLetter===null){
+    if (nextLetter === null) {
         cursorDiv.classList.add("moveCursorSpc");
     }
 
@@ -314,7 +324,7 @@ document.querySelector(".test").addEventListener("click", () => {
 
 // Restart Button
 document.querySelector(".restart").addEventListener("click", () => {
-    man.style.animation = "none"; 
+    man.style.animation = "none";
     clearInterval(timerInterval);
     timerStarted = false;
     timerExpired = false;
@@ -369,7 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedMode = localStorage.getItem("typingMode") || "normal";
     const radioToCheck = document.querySelector(`input[name="mode"][value="${savedMode}"]`);
     if (radioToCheck) radioToCheck.checked = true;
-    
+
     modeBtn.addEventListener("click", () => {
         modeForm.classList.toggle("hidden");
     });
@@ -390,7 +400,7 @@ if (mode === "suddenDeath") {
 } else if (mode === "sprint") {
     console.log("Sprint mode selected");
     timeLeft = 20;
-    animationDuration=20000;
+    animationDuration = 20000;
 } else {
     console.log("Normal mode selected");
 }
@@ -405,7 +415,7 @@ modeForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const selectedMode = document.querySelector('input[name="mode"]:checked').value;
     mode = selectedMode;
-    location.reload(); 
+    location.reload();
 });
 
 function endSuddenDeathMode() {
