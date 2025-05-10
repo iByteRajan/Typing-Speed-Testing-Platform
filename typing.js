@@ -19,6 +19,9 @@ const wpmDisplay = document.getElementById("WPM");
 const cpmDisplay = document.getElementById("CPM");
 const accuracyDisplay = document.getElementById("accuracy");
 
+let inactivityTimer;
+let paused = false;
+
 function startTimer() {
     animationStartTime = Date.now();
     timerInterval = setInterval(() => {
@@ -154,9 +157,31 @@ firstLetter.classList.add("current");
 firstWord.classList.add("current");
 updateCursor();
 
+function pauseTest() {
+    paused = true;
+    clearInterval(timerInterval); // if you're using setInterval for the timer
+    typingArea.blur(); // optionally blur typing area
+    console.log("Paused due to inactivity");
+}
+
+function resumeTest() {
+    paused = false;
+    startTimer(); // or resumeTimer() if you separate logic
+    console.log("Resumed after pause");
+}
 
 //HANDLING THE KEYPRESS EVENTS
 typingArea.addEventListener("keydown", (event) => {
+
+    if (paused) {
+        resumeTest();
+    }
+
+    // Reset inactivity timer on any key press
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(() => {
+        pauseTest();
+    }, 10000); // 10 seconds
 
     if (timerExpired) {
         event.preventDefault();
