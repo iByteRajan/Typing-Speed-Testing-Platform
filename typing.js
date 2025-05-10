@@ -171,7 +171,7 @@ function resumeTest() {
 }
 
 //HANDLING THE KEYPRESS EVENTS
-typingArea.addEventListener("keydown", (event) => {
+window.addEventListener("keydown", (event) => {
 
     if (paused) {
         resumeTest();
