@@ -296,30 +296,40 @@ typingArea.addEventListener("keydown", (event) => {
     updateStats();
 })
 
-
-// Test Button (Generate New Text)
+//test button
 document.querySelector(".test").addEventListener("click", () => {
-    let input = prompt("Enter Five Characters For Custom Practice With space:");
-    let charsToUse = input.split('');
-    if (charsToUse.length != 9) alert("Invalid Inputs");
-    let newTest = '';
-    for (let i = 0; i < 400; i++) {
-        newTest += charsToUse[Math.floor(Math.random() * charsToUse.length)];
+  let input = prompt("Enter Five Characters For Custom Practice With space:");
+  let charsToUse = input.split("");
+  if (charsToUse.length != 9) {
+    alert("Invalid Inputs");
+    return;
+  }
+  let newTest = "";
+  for (let i = 0; i < 400; i++) {
+    let char = charsToUse[Math.floor(Math.random() * charsToUse.length)];
+
+    // Avoid adding a space after a space
+    if (char === " " && newTest.endsWith(" ")) {
+      i--; // Don't count this iteration
+      continue;
     }
-    words = newTest.split(" ");
 
-    document.querySelector(".para").classList.remove("fade-out");
-    document.querySelector("#WPM").classList.remove("centered");
-    document.querySelector("#CPM").classList.remove("centered");
-    document.querySelector("#accuracy").classList.remove("centered");
-    document.querySelector("#timer").classList.remove("fade-out");
+    newTest += char;
+  }
+  words = newTest.split(" ");
 
-    insertpara();
-    const firstWord = document.querySelector('.word');
-    const firstLetter = firstWord.querySelector('.letter');
-    firstLetter.classList.add("current");
-    firstWord.classList.add("current");
-    typingArea.focus();
+  document.querySelector(".para").classList.remove("fade-out");
+  document.querySelector("#WPM").classList.remove("centered");
+  document.querySelector("#CPM").classList.remove("centered");
+  document.querySelector("#accuracy").classList.remove("centered");
+  document.querySelector("#timer").classList.remove("fade-out");
+
+  insertpara();
+  const firstWord = document.querySelector(".word");
+  const firstLetter = firstWord.querySelector(".letter");
+  firstLetter.classList.add("current");
+  firstWord.classList.add("current");
+  typingArea.focus();
 });
 
 // Restart Button
