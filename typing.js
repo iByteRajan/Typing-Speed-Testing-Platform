@@ -430,5 +430,6 @@ function endSuddenDeathMode() {
     timerDisplay.classList.add("fade-out");
 
     updateStats();
+    man.style.animation = "none";
     alert("Game Over! You made a mistake in Sudden Death Mode.");
 }
