@@ -188,8 +188,9 @@ typingArea.addEventListener("keydown", (event) => {
         }
 
         let prevLetter = currentLetterEle.previousElementSibling;
-        if(prevLetter.classList.contains("correct")) correctChars--;
-
+        if (prevLetter && prevLetter.classList.contains("correct")) {
+            correctChars--;
+        }
         if (prevLetter) {
             removeClass(currentLetterEle, "current");
             addClass(prevLetter, "current");
