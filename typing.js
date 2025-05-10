@@ -366,6 +366,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const modeForm = document.getElementById("modeForm");
     const modeSelectionForm = document.getElementById("modeSelectionForm");
 
+    const savedMode = localStorage.getItem("typingMode") || "normal";
+    const radioToCheck = document.querySelector(`input[name="mode"][value="${savedMode}"]`);
+    if (radioToCheck) radioToCheck.checked = true;
+    
     modeBtn.addEventListener("click", () => {
         modeForm.classList.toggle("hidden");
     });
@@ -401,7 +405,7 @@ modeForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const selectedMode = document.querySelector('input[name="mode"]:checked').value;
     mode = selectedMode;
-    location.reload(); // refresh to apply mode changes
+    location.reload(); 
 });
 
 function endSuddenDeathMode() {
