@@ -251,6 +251,7 @@ window.addEventListener("keydown", (event) => {
         }
 
         const prevLetter = currentLetterEle.previousElementSibling;
+        totalTypedChars--;
         if (prevLetter) {
             removeClass(currentLetterEle, "current");
             addClass(prevLetter, "current");
@@ -407,21 +408,6 @@ function resetTest() {
     firstWord.classList.add("current");
     typingArea.focus();
 }
-
-document.querySelector(".save-scores").addEventListener("click", () => {
-    if (scoreSaved) {
-        alert("⚠ Score already saved.");
-        return;
-    }
-
-    if (!timerExpired) {
-        const confirmSave = confirm("⏱ The timer hasn't expired yet. Save current score?");
-        if (!confirmSave) return;
-    }
-
-    const stats = getCurrentStats();
-    saveScore(stats.wpm, stats.cpm, stats.accuracy);
-});
 
 // Modes selection
 document.addEventListener("DOMContentLoaded", () => {
