@@ -113,7 +113,7 @@ function saveScore(wpm, cpm, accuracy) {
             console.log("Score saved with ID:", docRef.id);
             const timeElapsed = Date.now() - animationStartTime;
             man.style.animation = "none";
-            alert("✅ Score saved successfully!");
+            // alert("✅ Score saved successfully!");
             scoreSaved = true;
         })
         .catch((error) => {
