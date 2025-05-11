@@ -21,34 +21,37 @@ const accuracyDisplay = document.getElementById("accuracy");
 
 let inactivityTimer;
 let paused = false;
-
 function startTimer() {
+    clearInterval(timerInterval); // Clear any existing interval
+
     animationStartTime = Date.now();
     timerInterval = setInterval(() => {
-        timeLeft--;
-        timerDisplay.textContent = `00:${timeLeft < 10 ? "0" : ""}${timeLeft}`;
+        if (!paused) {
+            timeLeft--;
+            timerDisplay.textContent = `00:${timeLeft < 10 ? "0" : ""}${timeLeft}`;
 
-        if (timeLeft === 0) {
-            man.style.animationPlayState = "paused";
-            clearInterval(timerInterval);
-            timerExpired = true;
-            typingArea.blur(); // stop typing
-            updateStats();
-            para.classList.add("fade-out");
-            wpmDisplay.classList.add("centered");
-            cpmDisplay.classList.add("centered");
-            accuracyDisplay.classList.add("centered");
-            timerDisplay.classList.add("fade-out");
-            
-            const stats = getCurrentStats();
-            saveScore(stats.wpm, stats.cpm, stats.accuracy);
-            saveScore();
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                timerExpired = true;
+                man.style.animationPlayState = "paused";
+                typingArea.blur();
+                updateStats();
+                const stats = getCurrentStats();
+                saveScore(stats.wpm, stats.cpm, stats.accuracy);
 
-            
+                para.classList.add("fade-out");
+                wpmDisplay.classList.add("centered");
+                cpmDisplay.classList.add("centered");
+                accuracyDisplay.classList.add("centered");
+                timerDisplay.classList.add("fade-out");
+            }
         }
     }, 1000);
+
     man.style.animation = `moveRight ${animationDuration / 1000}s linear forwards`;
+    man.style.animationPlayState = "running";
 }
+
 
 
 function updateStats() {
@@ -110,7 +113,7 @@ function saveScore(wpm, cpm, accuracy) {
             console.log("Score saved with ID:", docRef.id);
             const timeElapsed = Date.now() - animationStartTime;
             man.style.animation = "none";
-            // alert("✅ Score saved successfully!");
+            alert("✅ Score saved successfully!");
             scoreSaved = true;
         })
         .catch((error) => {
@@ -164,16 +167,22 @@ updateCursor();
 
 function pauseTest() {
     paused = true;
-    clearInterval(timerInterval); // if you're using setInterval for the timer
-    typingArea.blur(); // optionally blur typing area
+    clearInterval(timerInterval); // stop interval
+    man.style.animationPlayState = "paused"; // pause animation
+    typingArea.blur();
     console.log("Paused due to inactivity");
 }
 
+
 function resumeTest() {
+    if (!paused) return;
+
     paused = false;
-    startTimer(); // or resumeTimer() if you separate logic
+    startTimer(); // resume from paused time
+    man.style.animationPlayState = "running"; // resume animation
     console.log("Resumed after pause");
 }
+
 
 //HANDLING THE KEYPRESS EVENTS
 window.addEventListener("keydown", (event) => {
@@ -186,7 +195,7 @@ window.addEventListener("keydown", (event) => {
     clearTimeout(inactivityTimer);
     inactivityTimer = setTimeout(() => {
         pauseTest();
-    }, 10000); // 10 seconds
+    }, 5000); // 5 seconds
 
     if (timerExpired) {
         event.preventDefault();
@@ -370,8 +379,10 @@ document.querySelector(".restart").addEventListener("click", () => {
     clearInterval(timerInterval);
     timerStarted = false;
     timerExpired = false;
-    timeLeft = 60;
-    timerDisplay.textContent = "01:00";
+    timeLeft=flagSprint? 20 : 60;
+    console.log(timeLeft);
+
+    if(timeLeft==60) timerDisplay.textContent =`00:${timeLeft}`;
 
     totalTypedChars = 0;
     correctChars = 0;
