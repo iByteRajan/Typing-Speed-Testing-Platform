@@ -112,7 +112,7 @@ window.addEventListener("load", function () {
         }
         else {
             const currentPage = window.location.pathname;
-            if (!currentPage.includes("loginPage.html") && !currentPage.includes("signUpPage.html")) {
+            if (!currentPage.includes("index.html") && !currentPage.includes("signUpPage.html")) {
                 window.location.href = "signUpPage.html";
             }
         }
