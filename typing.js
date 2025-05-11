@@ -384,16 +384,27 @@ document.querySelector(".restart").addEventListener("click", () => {
     clearInterval(timerInterval);
     timerStarted = false;
     timerExpired = false;
-    timeLeft=flagSprint? 20 : 60;
-    console.log(timeLeft);
+    paused = false;
+    scoreSaved = false;
 
-    if(timeLeft==60) timerDisplay.textContent =`00:${timeLeft}`;
+    // Reapply mode
+    mode = localStorage.getItem("typingMode") || "normal";
+    if (mode === "sprint") {
+        timeLeft = 20;
+        flagSprint = true;
+        animationDuration = 20000;
+    } else {
+        timeLeft = 60;
+        flagSprint = false;
+        animationDuration = 60000;
+    }
+
+    timerDisplay.textContent = `00:${timeLeft < 10 ? "0" : ""}${timeLeft}`;
 
     totalTypedChars = 0;
     correctChars = 0;
     typedWords = 0;
-    ShftParaMltpl=0;
-    para.style.marginTop='0';
+
     wpmDisplay.textContent = `0 WPM`;
     cpmDisplay.textContent = `0 CPM`;
     accuracyDisplay.textContent = `0%`;
@@ -404,15 +415,15 @@ document.querySelector(".restart").addEventListener("click", () => {
     document.querySelector("#accuracy").classList.remove("centered");
     document.querySelector("#timer").classList.remove("fade-out");
 
-    // Reset the string and word list to the default
-
     insertpara();
     const firstWord = document.querySelector('.word');
     const firstLetter = firstWord.querySelector('.letter');
     firstLetter.classList.add("current");
     firstWord.classList.add("current");
+    updateCursor();
     typingArea.focus();
 });
+
 
 // document.querySelector(".save-scores").addEventListener("click", () => {
 //     if (scoreSaved) {
@@ -453,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-const mode = localStorage.getItem("typingMode") || "normal";
+let mode = localStorage.getItem("typingMode") || "normal";
 
 var flagSprint = false;
 if (mode === "suddenDeath") {
@@ -471,14 +482,14 @@ timerDisplay.textContent = `00:${timeLeft < 10 ? "0" : ""}${timeLeft} `;
 
 // Sudden Death Mode
 
-const modeForm = document.getElementById("modeSelectionForm");
+// const modeForm = document.getElementById("modeSelectionForm");
 
-modeForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const selectedMode = document.querySelector('input[name="mode"]:checked').value;
-    mode = selectedMode;
-    location.reload();
-});
+// modeForm.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     const selectedMode = document.querySelector('input[name="mode"]:checked').value;
+//     mode = selectedMode;
+//     location.reload();
+// });
 
 function endSuddenDeathMode() {
     typingArea.blur();
