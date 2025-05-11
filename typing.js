@@ -215,7 +215,15 @@ function resetInactivityTimer() {
     inactivityTimer = setTimeout(pauseTest, 10000); // 10 seconds
 }
 
+// HANDLING THE KEYPRESS EVENTS :)
+var flagStart=true;
 window.addEventListener("keydown", (event) => {
+    const keyPressed = event.key;
+    if(flagStart && keyPressed.length !== 1 && keyPressed !== " "){
+        return;
+    }
+    flagStart=false;
+    
     if (paused) {
         resumeTest();
     }
@@ -231,7 +239,6 @@ window.addEventListener("keydown", (event) => {
         timerStarted = true;
     }
 
-    const keyPressed = event.key;
     const currentLetterEle = document.querySelector('.letter.current');
     const currentWordEle = document.querySelector('.word.current');
 
@@ -343,6 +350,7 @@ window.addEventListener("keydown", (event) => {
 
     updateStats();
 });
+
 
 // Test Button (Generate New Text)
 document.querySelector(".test").addEventListener("click", () => {
