@@ -224,6 +224,10 @@ window.addEventListener("keydown", (event) => {
     if (keyPressed === "Backspace") {
         event.preventDefault();
 
+        if(currentLetterEle.nextSibling==null){
+            cursorDiv.classList.remove("moveCursorSpc")
+        }
+
         if (currentLetterEle.classList.contains("correct")) correctChars--;
         if (currentLetterEle.classList.contains("correct") || currentLetterEle.classList.contains("incorrect")) {
             removeClass(currentLetterEle, "correct");
