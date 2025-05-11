@@ -185,8 +185,14 @@ function resumeTest() {
 
 
 //HANDLING THE KEYPRESS EVENTS
+var flagStart=true;
 window.addEventListener("keydown", (event) => {
-
+    let keyPressed = event.key;
+    if(flagStart && keyPressed.length !== 1 && keyPressed !== " "){
+        return ;
+    }
+    flagStart=false;
+    
     if (paused) {
         resumeTest();
     }
@@ -207,7 +213,6 @@ window.addEventListener("keydown", (event) => {
         timerStarted = true;
     }
 
-    let keyPressed = event.key;
     let currentLetterEle = document.querySelector('.letter.current');
     let currentWordEle = document.querySelector('.word.current');
 
