@@ -42,8 +42,18 @@ function login() {
             window.location.href = "landingPage.html";
         })
         .catch((error) => {
-            document.getElementById("msg").innerText = error.message;
-        });
+    let Message = "Login failed. Please check your credentials.";
+
+    if (error.code === 'auth/user-not-found') {
+        Message = "No account found with this email.";
+    } else if (error.code === 'auth/wrong-password') {
+        Message = "Incorrect password. Try again.";
+    } else if (error.code === 'auth/invalid-email') {
+        Message = "Invalid email format.";
+    }
+
+    document.getElementById("msg").innerText = Message;
+});
 }
 
 function logout() {
