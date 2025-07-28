@@ -391,3 +391,23 @@ body{
 .moveCursorSpc{
   transform:translateX(15px);
 }
+.form_row{
+  position:relative;
+}
+.normal_description,
+.sprint_description,
+.suddenDeath_description {
+  width:10vw;
+  background-color:#B8C1EC;
+  position: absolute;
+  right:16vw;
+  top:-1vh;
+  display: none;
+  /* color:#fdc500; */
+}
+
+.optDiv:hover .normal_description,
+.optDiv:hover .sprint_description,
+.optDiv:hover .suddenDeath_description {
+  display: block;
+}
