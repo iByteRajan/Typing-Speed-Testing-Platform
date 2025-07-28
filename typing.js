@@ -391,6 +391,8 @@ document.querySelector(".restart").addEventListener("click", () => {
     paused = false;
     scoreSaved = false;
 
+    para.style.marginTop="0";
+    
     // Reapply mode
     mode = localStorage.getItem("typingMode") || "normal";
     if (mode === "sprint") {
