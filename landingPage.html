@@ -35,11 +35,20 @@
             <!-- <img src="./IMAGES/leaderboard.png" alt=""> -->
             <button style="font-size: 35px; color:#232946; " class=" modes">Mode</button>
 
-            <div id="modeForm" class="hidden">
+            <div id="modeForm" class="hidden form_row" >
               <form id="modeSelectionForm">
-                <label><input type="radio" name="mode" value="normal" checked> Normal Mode</label><br>
-                <label><input type="radio" name="mode" value="suddenDeath"> Sudden Death Mode</label><br>
-                <label><input type="radio" name="mode" value="sprint"> Sprint Mode</label><br>
+                <div class="optDiv">
+                  <p class="normal_description">Type for 60 seconds. Focus on speed and accuracy.</p>
+                  <label><input type="radio" name="mode" value="normal" checked> Normal Mode</label><br>
+                </div>
+                <div class="optDiv">
+                  <p class="suddenDeath_description">One mistake and it’s game over. Accuracy is everything.</p>
+                  <label><input type="radio" name="mode" value="suddenDeath"> Sudden Death Mode</label><br>
+                </div>
+                <div class="optDiv">
+                  <p class="sprint_description">Type as fast as you can in just 20 seconds. Quick and intense!</p>
+                  <label><input type="radio" name="mode" value="sprint"> Sprint Mode</label><br>
+                </div>
                 <button type="submit" class="selectModeBtn">Start</button>
               </form>
             </div>
